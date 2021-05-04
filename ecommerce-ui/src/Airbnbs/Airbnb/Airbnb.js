@@ -6,7 +6,6 @@ import Ratings from '../Ratings/Ratings';
 import TitleAndType from '../TitleAndType/TitleAndType';
 import airbnbs from '../../_data/airbnbs.json';
 import AddToCart from '../AddToCart/AddToCart';
-//import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,21 +20,9 @@ class Airbnb extends Component {
     };
   }
 
-  // static propTypes = {
-  //     airbnbItems: PropTypes.arrayOf(
-  //       PropTypes.shape({
-  //         airbnbItem: PropTypes.string,
-  //         airbnbItemTitle: PropTypes.string,
-  //         total: PropTypes.number
-  //       })
-  //     ),
-  //     addToCart: PropTypes.func
-  //   };
-
-
   addToCart = (index, data) => {
       const title = data.title + ':';
-      const costDisplay = '$' + data.payment.cost;
+      const costDisplay = data.payment.cost;
       let currentTotal = this.state.total;
       this.setState({
         airbnbItems: [...this.state.airbnbItems, {airbnbItem: index, airbnbItemTitle: title, airbnbCost: costDisplay}],
@@ -44,31 +31,33 @@ class Airbnb extends Component {
   }
 
   deleteCartItem = (index) => {
-    return () => {
-      const item = this.state.airbnbItems[index];
-      console.log(item);
+      const itemTotal = this.state.airbnbItems[index].airbnbCost;
+      const updatedTotal = this.state.total - itemTotal;
       const updatedAirbnbItems = [
-        ...this.state.airbnbItems.slice(0, index)
+        ...this.state.airbnbItems.slice(0, index),
+        ...this.state.airbnbItems.slice(index + 1)
       ];
       this.setState({
-        airbnbItems: updatedAirbnbItems
-      })
-    }
+        airbnbItems: updatedAirbnbItems,
+        total: updatedTotal
+      });
   }
 
   render() {
     let airbnbsList = airbnbs;
     const cartItems = this.state.airbnbItems.map((cartItem, index) => {
 
-      return (
-        <div className="cart-item" key={index}>
-          <span className="row align-bottom space-between">{cartItem.airbnbItemTitle} {cartItem.airbnbCost}
-            <FontAwesomeIcon className="trash-icon align-center" 
-              icon={index && faTrashAlt} 
-              onClick={(e) => this.deleteCartItem(index)} />
-          </span>
-        </div>
-        )
+      if (index) {
+        return (
+          <div className="cart-item" key={index}>
+            <span className="row align-bottom space-between">{cartItem.airbnbItemTitle} ${cartItem.airbnbCost}
+              <FontAwesomeIcon className="trash-icon align-center" 
+                icon={faTrashAlt} 
+                onClick={(e) => this.deleteCartItem(index)} />
+            </span>
+          </div>
+          )
+        }
     });
     //console.log(this.state);
 
@@ -124,16 +113,5 @@ class Airbnb extends Component {
     )
   }
 }
-
-// Airbnb.propTypes = {
-//   airbnbItems: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       airbnbItem: PropTypes.string,
-//       airbnbItemTitle: PropTypes.string,
-//       total: PropTypes.number
-//     })
-//   ),
-//   addToCart: PropTypes.func
-// };
 
 export default Airbnb; 
