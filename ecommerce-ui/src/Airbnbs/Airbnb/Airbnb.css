@@ -1,0 +1,83 @@
+.airbnb-and-cart {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 1rem;
+}
+
+.cart-items {
+  grid-area: 1 / 2 / 2 / 3;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  margin-top: 1.5rem;
+  height: 50vh;
+  text-align: left;
+  position: relative;
+}
+
+.cart-items > h2 {
+  text-align: center;
+}
+
+.cart-items > h3 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+}
+
+.airbnbs-column {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.airbnbContainer {
+  padding: 1% 0 3% 0;
+  border-bottom: 1px solid #ebebeb;
+  margin: 2% 3% 0 2%;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.center {
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item {
+  padding-bottom: .5rem;
+}
+
+.align-bottom {
+  align-items: flex-end;
+}
+
+.align-center {
+  align-self: center;
+}
+
+
+

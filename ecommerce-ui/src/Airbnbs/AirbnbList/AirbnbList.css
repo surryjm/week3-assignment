@@ -1,0 +1,14 @@
+.container {
+  margin: 0 12% 5% 12%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+.airbnb {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.header-underline {
+  box-shadow: 0 8px 6px -6px #ededed;
+}

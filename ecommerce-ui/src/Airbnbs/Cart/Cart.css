@@ -1,0 +1,12 @@
+.align-right {
+  text-align: right;
+}
+
+.cart {
+  grid-area: 1 / 1 / 2 / 2;
+  justify-self: end;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  align-self: center;
+}
